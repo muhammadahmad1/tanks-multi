@@ -28,6 +28,8 @@ namespace UnityStandardAssets.Network
 
         public void OnClickHost()
         {
+			lobbyManager.networkPort = 75;
+			lobbyManager.networkAddress = "82.6.154.113";
             lobbyManager.StartHost();
         }
 
@@ -35,7 +37,10 @@ namespace UnityStandardAssets.Network
         {
             lobbyManager.ChangeTo(lobbyPanel);
 
-            lobbyManager.networkAddress = ipInput.text;
+			lobbyManager.networkPort = 75;
+			lobbyManager.networkAddress = "82.6.154.113";
+				
+            //lobbyManager.networkAddress = ipInput.text;
             lobbyManager.StartClient();
 
             lobbyManager.backDelegate = lobbyManager.StopClientClbk;
