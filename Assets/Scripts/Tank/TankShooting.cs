@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using CnControls;
 
 public class TankShooting : NetworkBehaviour
 {
@@ -36,7 +37,7 @@ public class TankShooting : NetworkBehaviour
     private void Start()
     {
         // The fire axis is based on the player number.
-        m_FireButton = "Fire" + (m_localID + 1);
+		m_FireButton = "Fire1"; //+ (m_localID + 1);
 
         // The rate that the launch force charges up is the range of possible forces by the max charge time.
         m_ChargeSpeed = (m_MaxLaunchForce - m_MinLaunchForce) / m_MaxChargeTime;
@@ -59,7 +60,7 @@ public class TankShooting : NetworkBehaviour
             Fire();
         }
         // Otherwise, if the fire button has just started being pressed...
-        else if (Input.GetButtonDown(m_FireButton))
+		else if (CnInputManager.GetButtonDown(m_FireButton))
         {
             // ... reset the fired flag and reset the launch force.
             m_Fired = false;
@@ -70,7 +71,7 @@ public class TankShooting : NetworkBehaviour
             m_ShootingAudio.Play();
         }
         // Otherwise, if the fire button is being held and the shell hasn't been launched yet...
-        else if (Input.GetButton(m_FireButton) && !m_Fired)
+		else if (CnInputManager.GetButton(m_FireButton) && !m_Fired)
         {
             // Increment the launch force and update the slider.
             m_CurrentLaunchForce += m_ChargeSpeed * Time.deltaTime;
@@ -78,7 +79,7 @@ public class TankShooting : NetworkBehaviour
             m_AimSlider.value = m_CurrentLaunchForce;
         }
         // Otherwise, if the fire button is released and the shell hasn't been launched yet...
-        else if (Input.GetButtonUp(m_FireButton) && !m_Fired)
+		else if (CnInputManager.GetButtonUp(m_FireButton) && !m_Fired)
         {
             // ... launch the shell.
             Fire();

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using CnControls;
 
 namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 {
@@ -7,25 +8,25 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
     {
         public override float GetAxis(string name, bool raw)
         {
-            return raw ? Input.GetAxisRaw(name) : Input.GetAxis(name);
+            return raw ? CnInputManager.GetAxisRaw(name) : CnInputManager.GetAxis(name);
         }
 
 
         public override bool GetButton(string name)
         {
-            return Input.GetButton(name);
+            return CnInputManager.GetButton(name);
         }
 
 
         public override bool GetButtonDown(string name)
         {
-            return Input.GetButtonDown(name);
+            return CnInputManager.GetButtonDown(name);
         }
 
 
         public override bool GetButtonUp(string name)
         {
-            return Input.GetButtonUp(name);
+            return CnInputManager.GetButtonUp(name);
         }
 
 

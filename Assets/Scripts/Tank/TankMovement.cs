@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using CnControls;
 
 public class TankMovement : NetworkBehaviour
 {
@@ -31,8 +32,8 @@ public class TankMovement : NetworkBehaviour
     private void Start()
     {
         // The axes are based on player number.
-        m_MovementAxis = "Vertical" + (m_LocalID + 1);
-        m_TurnAxis = "Horizontal" + (m_LocalID + 1);
+		m_MovementAxis = "Vertical1"; //+ (m_LocalID + 1);
+		m_TurnAxis = "Horizontal1"; //+ (m_LocalID + 1);
 
         // Store the original pitch of the audio source.
         m_OriginalPitch = m_MovementAudio.pitch;
@@ -44,8 +45,8 @@ public class TankMovement : NetworkBehaviour
             return;
 
         // Store the value of both input axes.
-        m_MovementInput = Input.GetAxis(m_MovementAxis);
-        m_TurnInput = Input.GetAxis(m_TurnAxis);
+		m_MovementInput = CnInputManager.GetAxis(m_MovementAxis);
+		m_TurnInput = CnInputManager.GetAxis(m_TurnAxis);
 
         EngineAudio();
     }
